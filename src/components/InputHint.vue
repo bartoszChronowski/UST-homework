@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, reactive, watchEffect} from "vue";
-import {RULE, RULE_INDICATOR_CLASS} from "@/domain/password/rules";
+import {RULE, RULE_INDICATOR_CLASS, RuleLabel} from "@/domain/password/rules";
 
 const props = defineProps<{
   fieldModel: string
@@ -62,7 +62,7 @@ watchEffect(() => {
           :data-test-rule-indicator="key"
           :class="[value ? RULE_INDICATOR_CLASS.Pass : RULE_INDICATOR_CLASS.Fail, 'password-hint__rule']"
       >
-        {{key}}
+        {{RuleLabel[key]}}
       </li>
     </ul>
 </template>
@@ -72,7 +72,11 @@ watchEffect(() => {
   text-decoration: line-through;
 }
 
+.password-hint__ruleset {
+  margin-top: 1rem;
+}
+
 .password-hint__ruleset li {
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 </style>

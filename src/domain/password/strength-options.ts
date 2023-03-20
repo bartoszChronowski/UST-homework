@@ -1,11 +1,10 @@
-const StrengthOption = {
-    Weak: "weak",
-    Strong: "strong",
-};
+export enum STRENGTH_OPTION {
+    Weak = "weak",
+    Strong = "strong"
+}
 
-const StrengthOptionLabel = {
-    [StrengthOption.Weak]: "Password is weak",
-    [StrengthOption.Strong]: "Password is strong enough",
-};
+export const StrengthOptionLabel = {
+    [STRENGTH_OPTION.Weak]: "Password is weak",
+    [STRENGTH_OPTION.Strong]: "Password is strong enough",
+}
 
-export { StrengthOption, StrengthOptionLabel };

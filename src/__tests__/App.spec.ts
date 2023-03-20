@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 
 import App from '@/App.vue'
 import { createPinia } from 'pinia/dist/pinia'
-import {RULE, RULE_INDICATOR_CLASS} from '@/domain/password/rules'
-import { StrengthOption, StrengthOptionLabel } from '@/domain/password/strength-options'
-import {useStrongPasswordStore} from "../stores/strong-password";
+import { RULE, RULE_INDICATOR_CLASS } from '@/domain/password/rules'
+import { STRENGTH_OPTION, StrengthOptionLabel } from '@/domain/password/strength-options'
+import { useStrongPasswordStore } from "../stores/strong-password";
 
 describe('App', () => {
   let wrapper: any
@@ -134,7 +134,7 @@ describe('App', () => {
       it.each(examples)('should indicate password as weak for input "%s"', async (password) => {
         await setPasswordTo(password)
         expect(wrapper.get('[data-test="validation-summary"]').text()).toBe(
-            StrengthOptionLabel[StrengthOption.Weak]
+            StrengthOptionLabel[STRENGTH_OPTION.Weak]
         )
       })
     })
@@ -144,7 +144,7 @@ describe('App', () => {
       it.each(examples)('should indicate password as strong for input "%s"', async (password) => {
         await setPasswordTo(password)
         expect(wrapper.get('[data-test="validation-summary"]').text()).toBe(
-            StrengthOptionLabel[StrengthOption.Strong]
+            StrengthOptionLabel[STRENGTH_OPTION.Strong]
         )
       })
     })
