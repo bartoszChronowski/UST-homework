@@ -1,7 +1,7 @@
 import { describe, it, beforeEach, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import App from '@/App.vue'
+import MainForm from '@/components/specific/MainForm.vue'
 import { createPinia } from 'pinia/dist/pinia'
 import { RULE, RULE_INDICATOR_CLASS } from '@/domain/password/rules'
 import { STRENGTH_OPTION, StrengthOptionLabel } from '@/domain/password/strength-options'
@@ -15,7 +15,7 @@ describe('App', () => {
   }
 
   beforeEach(() => {
-    wrapper = mount(App, {
+    wrapper = mount(MainForm, {
       global: {
         plugins: [createPinia()]
       }
