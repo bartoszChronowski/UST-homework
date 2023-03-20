@@ -11,9 +11,9 @@ const strengthPercentage = computed<number>(() => {
 })
 
 const inputProgressBgColor = computed(() => ({
-  'input-progress--small': strengthPercentage.value < 30,
-  'input-progress--medium': strengthPercentage.value > 30 && strengthPercentage.value < 80,
-  'input-progress--big': strengthPercentage.value > 80
+  'input-progress--small': strengthPercentage.value <= 30,
+  'input-progress--medium': strengthPercentage.value > 30 && strengthPercentage.value <= 65,
+  'input-progress--big': strengthPercentage.value > 65
 }))
 
 const inputProgressStyle = computed<string>(() => {

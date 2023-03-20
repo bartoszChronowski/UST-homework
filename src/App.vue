@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import InputHint from "@/components/InputHint.vue";
 import InputProgress from "@/components/InputProgress.vue";
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {STRENGTH_OPTION, StrengthOptionLabel} from "@/domain/password/strength-options";
+import { RULE } from "@/domain/password/rules";
 
 const inputData = ref('')
 const passwordStrength = ref(0)
@@ -19,8 +20,8 @@ function handlePasswordStrengthChange(strength: number) {
 <template>
   <div class="main">
     <form class="ust-form">
-      <input data-test="password-field" class="password-field" v-model="inputData" />
-      <InputProgress :strength="passwordStrength" :max-strength="7" />
+      <input data-test="password-field" v-model="inputData" />
+      <InputProgress :strength="passwordStrength" :max-strength="Object.keys(RULE).length" />
       <span data-test="validation-summary">{{ passwordStrengthLabel }}</span>
       <InputHint @password-strength-changed="handlePasswordStrengthChange" :field-model="inputData" />
     </form>
