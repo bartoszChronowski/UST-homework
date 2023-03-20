@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {computed} from "vue";
+import {STRENGTH_OPTION, StrengthSatisfaction} from "@/domain/password/strength-options";
+import {PROGRESS_INDICATOR_CLASS} from "@/domain/password/rules";
 
 const props = defineProps<{
   strength: number
@@ -10,11 +12,9 @@ const strengthPercentage = computed<number>(() => {
   return (100 / props.maxStrength) * props.strength
 })
 
-const inputProgressBgColor = computed(() => ({
-  'input-progress--small': strengthPercentage.value <= 30,
-  'input-progress--medium': strengthPercentage.value > 30 && strengthPercentage.value <= 65,
-  'input-progress--big': strengthPercentage.value > 65
-}))
+const inputProgressBgColor = computed<string>(() =>
+    props.strength < StrengthSatisfaction[STRENGTH_OPTION.Strong] ? PROGRESS_INDICATOR_CLASS.Fail : PROGRESS_INDICATOR_CLASS.Pass
+)
 
 const inputProgressStyle = computed<string>(() => {
   return `width: ${strengthPercentage.value}%`
@@ -30,15 +30,11 @@ const inputProgressStyle = computed<string>(() => {
   height: 0.5rem;
 }
 
-.input-progress--small {
+.input-progress--fail {
   background-color: var(--color-danger);
 }
 
-.input-progress--medium {
-  background-color: var(--color-warning);
-}
-
-.input-progress--big {
+.input-progress--pass {
   background-color: var(--color-primary);
 }
 </style>

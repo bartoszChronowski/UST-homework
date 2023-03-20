@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 
 import MainForm from '@/components/specific/MainForm.vue'
 import { createPinia } from 'pinia/dist/pinia'
-import { RULE, RULE_INDICATOR_CLASS } from '@/domain/password/rules'
+import {PROGRESS_INDICATOR_CLASS, RULE, RULE_INDICATOR_CLASS} from '@/domain/password/rules'
 import { STRENGTH_OPTION, StrengthOptionLabel } from '@/domain/password/strength-options'
 import { useStrongPasswordStore } from "../stores/strong-password";
 
@@ -146,6 +146,24 @@ describe('App', () => {
         expect(wrapper.get('[data-test="validation-summary"]').text()).toBe(
             StrengthOptionLabel[STRENGTH_OPTION.Strong]
         )
+      })
+    })
+  })
+
+  describe('strength progress', () => {
+    describe('when less than 5 rules satisfied', () => {
+      const examples = ['A', 'a', 'Aa!', '$', '6a!B']
+      it.each(examples)('should indicate password as weak for input "%s"', async (password) => {
+        await setPasswordTo(password)
+        expect(wrapper.get('.input-progress').classes(PROGRESS_INDICATOR_CLASS.Fail)).toBe(true)
+      })
+    })
+
+    describe('when at least 5 rules satisfied', () => {
+      const examples = ['6a!Bd', 'hugryj#S3', 'EMn1fyStr0ngPa$$word']
+      it.each(examples)('should indicate password as strong for input "%s"', async (password) => {
+        await setPasswordTo(password)
+        expect(wrapper.get('.input-progress').classes(PROGRESS_INDICATOR_CLASS.Pass)).toBe(true)
       })
     })
   })

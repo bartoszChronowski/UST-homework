@@ -2,14 +2,14 @@
 import InputHint from "@/components/generic/InputHint.vue";
 import InputProgress from "@/components/generic/InputProgress.vue";
 import {computed, ref} from "vue";
-import {STRENGTH_OPTION, StrengthOptionLabel} from "@/domain/password/strength-options";
+import {STRENGTH_OPTION, StrengthOptionLabel, StrengthSatisfaction} from "@/domain/password/strength-options";
 import { RULE } from "@/domain/password/rules";
 
 const inputData = ref('')
 const passwordStrength = ref(0)
 
 const passwordStrengthLabel = computed<string>(() => {
-  return passwordStrength.value >= 5 ? StrengthOptionLabel[STRENGTH_OPTION.Strong] : StrengthOptionLabel[STRENGTH_OPTION.Weak]
+  return passwordStrength.value >= StrengthSatisfaction[STRENGTH_OPTION.Strong] ? StrengthOptionLabel[STRENGTH_OPTION.Strong] : StrengthOptionLabel[STRENGTH_OPTION.Weak]
 })
 
 function handlePasswordStrengthChange(strength: number) {

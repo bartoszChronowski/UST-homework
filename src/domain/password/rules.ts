@@ -13,6 +13,11 @@ export enum RULE_INDICATOR_CLASS {
     Fail  ='password-hint__rule--fail'
 }
 
+export enum PROGRESS_INDICATOR_CLASS {
+    Pass = 'input-progress--pass',
+    Fail  ='input-progress--fail'
+}
+
 export const RuleLabel = {
     [RULE.OneLetter]: "At least one letter",
     [RULE.UpperAndLower]: "One big and one small character",
