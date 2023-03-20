@@ -55,7 +55,7 @@ watchEffect(() => {
 </script>
 
 <template>
-    <ul>
+    <ul class="password-hint__ruleset">
       <li
           v-for="(value, key) in passwordRuleset"
           :key="key"
@@ -70,5 +70,9 @@ watchEffect(() => {
 <style scoped>
 .password-hint__rule--pass {
   text-decoration: line-through;
+}
+
+.password-hint__ruleset li {
+  margin: 1rem 0;
 }
 </style>
