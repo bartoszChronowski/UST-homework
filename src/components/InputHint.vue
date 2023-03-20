@@ -21,7 +21,7 @@ const atLeastOneNumber = computed<boolean>(() => {
 })
 
 const atLeastOneSpecialSymbol = computed<boolean>(() => {
-  return /[\W_]+/.test(props.fieldModel)
+  return /[^A-Za-z0-9\s]/.test(props.fieldModel)
 })
 
 const isAtLeastCharacters = (minLength: number) => {
@@ -62,7 +62,7 @@ watchEffect(() => {
           :data-test-rule-indicator="key"
           :class="[value ? RULE_INDICATOR_CLASS.Pass : RULE_INDICATOR_CLASS.Fail, 'password-hint__rule']"
       >
-        {{RuleLabel[key]}}
+        {{ RuleLabel[key] }}
       </li>
     </ul>
 </template>
