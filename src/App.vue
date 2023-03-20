@@ -8,7 +8,7 @@ const inputData = ref('')
 const passwordStrength = ref(0)
 
 const passwordStrengthLabel = computed<string>(() => {
-  return passwordStrength.value > 5 ? StrengthOptionLabel[STRENGTH_OPTION.Strong] : StrengthOptionLabel[STRENGTH_OPTION.Weak]
+  return passwordStrength.value >= 5 ? StrengthOptionLabel[STRENGTH_OPTION.Strong] : StrengthOptionLabel[STRENGTH_OPTION.Weak]
 })
 
 function handlePasswordStrengthChange(strength: number) {

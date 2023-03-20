@@ -28,7 +28,7 @@ describe('App', () => {
   })
 
   describe('rules indicators', () => {
-    const NOT_EXCLUSIVE_SPEC_SYMBOLS_LIST = '$%^& _-+*()@!'
+    const NOT_EXCLUSIVE_SPEC_SYMBOLS_LIST = '$%^&_-+*()@!'
 
     const examples = [
       {
